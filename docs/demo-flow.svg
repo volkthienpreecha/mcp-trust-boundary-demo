@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">MCP trust-boundary demo flow</title>
+  <desc id="desc">Three terminal-style panels show an unsafe local run that writes artifacts/pwned.txt, a safe run that blocks the same config with a policy violation, and a safe run that allows a benign config. A top strip marks the trust boundary between configuration and execution authority.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#08111f"/>
+      <stop offset="60%" stop-color="#0b1526"/>
+      <stop offset="100%" stop-color="#0e1b2e"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111c2d"/>
+      <stop offset="100%" stop-color="#0b1320"/>
+    </linearGradient>
+    <linearGradient id="strip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#11223a"/>
+      <stop offset="50%" stop-color="#142844"/>
+      <stop offset="100%" stop-color="#11223a"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#7fd4ff" flood-opacity="0.18"/>
+    </filter>
+    <style>
+      .title { font: 700 30px/1.2 Inter, Segoe UI, Arial, sans-serif; fill: #eef4ff; letter-spacing: 0.2px; }
+      .subtitle { font: 400 14px/1.4 Inter, Segoe UI, Arial, sans-serif; fill: #a8b7d1; }
+      .strip-label { font: 700 12px/1 Inter, Segoe UI, Arial, sans-serif; fill: #d7e5ff; letter-spacing: 1.8px; text-transform: uppercase; }
+      .strip-text { font: 600 15px/1.35 Inter, Segoe UI, Arial, sans-serif; fill: #eff5ff; }
+      .terminal-title { font: 700 16px/1 Inter, Segoe UI, Arial, sans-serif; fill: #eaf2ff; }
+      .mono { font: 500 14px/1.55 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #dbe6f7; }
+      .mono-dim { font: 500 14px/1.55 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #9ab0d1; }
+      .mono-red { font: 600 14px/1.55 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #ff8f9f; }
+      .mono-green { font: 600 14px/1.55 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #8cf0b2; }
+      .mono-amber { font: 600 14px/1.55 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #ffd37c; }
+      .label { font: 700 13px/1 Inter, Segoe UI, Arial, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+      .small { font: 500 12px/1.4 Inter, Segoe UI, Arial, sans-serif; fill: #9cb0cf; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <path d="M0,0 H1600 V980 H0 Z" fill="none" stroke="#2d4165" stroke-opacity="0.3"/>
+  <circle cx="1320" cy="110" r="220" fill="#1f3b65" fill-opacity="0.12"/>
+  <circle cx="260" cy="820" r="250" fill="#173252" fill-opacity="0.14"/>
+
+  <text x="80" y="66" class="title">Trust boundary demo: config looks like data, but it can drive local execution</text>
+  <text x="80" y="94" class="subtitle">Three local-only paths. Same malicious config is unsafe if launch policy is absent, blocked when policy is enforced, and allowed for a known-good config.</text>
+
+  <g transform="translate(80 128)">
+    <rect x="0" y="0" width="1440" height="92" rx="22" fill="url(#strip)" stroke="#27415f" stroke-width="1.5" filter="url(#softGlow)"/>
+    <text x="28" y="28" class="strip-label">Architecture strip</text>
+    <g transform="translate(34 44)">
+      <rect x="0" y="0" width="208" height="30" rx="15" fill="#152740" stroke="#294869" stroke-width="1"/>
+      <text x="104" y="20" text-anchor="middle" class="strip-text">config JSON</text>
+      <path d="M226 15 H388" stroke="#86b7ff" stroke-width="2.5" stroke-linecap="round"/>
+      <polygon points="388,15 378,9 378,21" fill="#86b7ff"/>
+      <rect x="404" y="0" width="182" height="30" rx="15" fill="#182c49" stroke="#314f72" stroke-width="1"/>
+      <text x="495" y="20" text-anchor="middle" class="strip-text">policy gate</text>
+      <path d="M608 15 H770" stroke="#86b7ff" stroke-width="2.5" stroke-linecap="round"/>
+      <polygon points="770,15 760,9 760,21" fill="#86b7ff"/>
+      <rect x="786" y="0" width="220" height="30" rx="15" fill="#182d47" stroke="#314f72" stroke-width="1"/>
+      <text x="896" y="20" text-anchor="middle" class="strip-text">process launch</text>
+      <path d="M1030 15 H1220" stroke="#86b7ff" stroke-width="2.5" stroke-linecap="round"/>
+      <polygon points="1220,15 1210,9 1210,21" fill="#86b7ff"/>
+      <rect x="1236" y="0" width="168" height="30" rx="15" fill="#16263c" stroke="#324f72" stroke-width="1"/>
+      <text x="1320" y="20" text-anchor="middle" class="strip-text">local execution</text>
+    </g>
+    <g transform="translate(650 50)">
+      <line x1="0" y1="-18" x2="0" y2="26" stroke="#ff8b8b" stroke-width="2.5" stroke-dasharray="6 6"/>
+      <rect x="-74" y="-18" width="148" height="26" rx="13" fill="#341b25" stroke="#ff7f91" stroke-width="1"/>
+      <text x="0" y="1" text-anchor="middle" class="label" fill="#ffb2be">trust boundary</text>
+      <text x="-246" y="1" text-anchor="end" class="small">untrusted config</text>
+      <text x="246" y="1" class="small">execution authority</text>
+    </g>
+  </g>
+
+  <g transform="translate(80 260)" filter="url(#shadow)">
+    <g transform="translate(0 0)">
+      <text x="0" y="-18" class="terminal-title">1. Unsafe run</text>
+      <rect x="0" y="0" width="450" height="620" rx="22" fill="url(#panel)" stroke="#4c2431" stroke-width="1.5"/>
+      <rect x="0" y="0" width="450" height="54" rx="22" fill="#1a2230" stroke="#4c2431" stroke-width="1.5"/>
+      <circle cx="26" cy="27" r="6" fill="#ff5f57"/>
+      <circle cx="48" cy="27" r="6" fill="#febc2e"/>
+      <circle cx="70" cy="27" r="6" fill="#28c840"/>
+      <text x="98" y="33" class="terminal-title">local terminal</text>
+      <g transform="translate(28 92)">
+        <text x="0" y="0" class="mono-dim">user@host:demo $</text>
+        <text x="0" y="28" class="mono">python -m demo.unsafe_client</text>
+        <text x="0" y="48" class="mono">--config configs/malicious_demo.json</text>
+        <text x="0" y="92" class="mono-dim">[demo]</text>
+        <text x="78" y="92" class="mono">loading configs/malicious_demo.json</text>
+        <text x="0" y="128" class="mono-dim">[demo]</text>
+        <text x="78" y="128" class="mono">no policy gate in this path</text>
+        <text x="0" y="164" class="mono-dim">[demo]</text>
+        <text x="78" y="164" class="mono">launching configured process</text>
+        <text x="0" y="200" class="mono-dim">[demo]</text>
+        <text x="78" y="200" class="mono">payload is harmless, but it still runs</text>
+        <text x="0" y="246" class="mono-red">[artifact]</text>
+        <text x="108" y="246" class="mono-red">wrote artifacts/pwned.txt</text>
+        <rect x="0" y="276" width="394" height="92" rx="16" fill="#20131a" stroke="#7f3145" stroke-width="1"/>
+        <text x="18" y="308" class="mono-red">result:</text>
+        <text x="96" y="308" class="mono">configuration was treated as execution authority</text>
+        <text x="18" y="342" class="mono">local effect is visible in the repository</text>
+      </g>
+    </g>
+
+    <g transform="translate(495 0)">
+      <text x="0" y="-18" class="terminal-title">2. Safe run blocks malicious config</text>
+      <rect x="0" y="0" width="450" height="620" rx="22" fill="url(#panel)" stroke="#5b4a1f" stroke-width="1.5"/>
+      <rect x="0" y="0" width="450" height="54" rx="22" fill="#1a2230" stroke="#5b4a1f" stroke-width="1.5"/>
+      <circle cx="26" cy="27" r="6" fill="#ff5f57"/>
+      <circle cx="48" cy="27" r="6" fill="#febc2e"/>
+      <circle cx="70" cy="27" r="6" fill="#28c840"/>
+      <text x="98" y="33" class="terminal-title">policy check</text>
+      <g transform="translate(28 92)">
+        <text x="0" y="0" class="mono-dim">user@host:demo $</text>
+        <text x="0" y="28" class="mono">python -m demo.safe_client</text>
+        <text x="0" y="48" class="mono">--config configs/malicious_demo.json</text>
+        <text x="0" y="92" class="mono-dim">[policy]</text>
+        <text x="94" y="92" class="mono-amber">policy violation:</text>
+        <text x="248" y="92" class="mono">inline execution via '-c' is not allowed</text>
+        <text x="0" y="128" class="mono-dim">[policy]</text>
+        <text x="94" y="128" class="mono">blocked before process launch</text>
+        <text x="0" y="182" class="mono-dim">[demo]</text>
+        <text x="78" y="182" class="mono">no local artifact was written</text>
+        <rect x="0" y="226" width="394" height="102" rx="16" fill="#1b2216" stroke="#4b6f36" stroke-width="1"/>
+        <text x="18" y="258" class="mono-green">effect:</text>
+        <text x="94" y="258" class="mono">same config, different outcome</text>
+        <text x="18" y="292" class="mono">policy gate keeps authority out of raw config</text>
+      </g>
+    </g>
+
+    <g transform="translate(990 0)">
+      <text x="0" y="-18" class="terminal-title">3. Safe run allows benign config</text>
+      <rect x="0" y="0" width="450" height="620" rx="22" fill="url(#panel)" stroke="#2d5a43" stroke-width="1.5"/>
+      <rect x="0" y="0" width="450" height="54" rx="22" fill="#1a2230" stroke="#2d5a43" stroke-width="1.5"/>
+      <circle cx="26" cy="27" r="6" fill="#ff5f57"/>
+      <circle cx="48" cy="27" r="6" fill="#febc2e"/>
+      <circle cx="70" cy="27" r="6" fill="#28c840"/>
+      <text x="98" y="33" class="terminal-title">approved launch</text>
+      <g transform="translate(28 92)">
+        <text x="0" y="0" class="mono-dim">user@host:demo $</text>
+        <text x="0" y="28" class="mono">python -m demo.safe_client</text>
+        <text x="0" y="48" class="mono">--config configs/benign.json</text>
+        <text x="0" y="92" class="mono-dim">[policy]</text>
+        <text x="94" y="92" class="mono-green">config approved</text>
+        <text x="0" y="128" class="mono-dim">[demo]</text>
+        <text x="78" y="128" class="mono">launching benign demo server</text>
+        <text x="0" y="164" class="mono-dim">[demo]</text>
+        <text x="78" y="164" class="mono">local execution is expected and allowed</text>
+        <rect x="0" y="214" width="394" height="102" rx="16" fill="#15231c" stroke="#356b52" stroke-width="1"/>
+        <text x="18" y="246" class="mono-green">result:</text>
+        <text x="94" y="246" class="mono">known-good config passes the gate</text>
+        <text x="18" y="280" class="mono">policy distinguishes trusted launch from hostile launch</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(80 918)">
+    <text x="0" y="0" class="small">Local-only demo. Harmless payloads. The important distinction is whether launch configuration is treated as data or as authority.</text>
+  </g>
+</svg>

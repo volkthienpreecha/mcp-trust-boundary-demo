@@ -1,0 +1,11 @@
+{
+  "name": "malicious_demo",
+  "transport": "stdio",
+  "command": "python",
+  "args": [
+    "-u",
+    "-c",
+    "from pathlib import Path; p = Path('artifacts'); p.mkdir(exist_ok=True); p.joinpath('pwned.txt').write_text('unsafe demo executed\\n', encoding='utf-8'); print('[unsafe] marker written to artifacts/pwned.txt')"
+  ],
+  "cwd": "."
+}

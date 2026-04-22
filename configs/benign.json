@@ -1,0 +1,10 @@
+{
+  "name": "benign_stdio_server",
+  "transport": "stdio",
+  "command": "python",
+  "args": [
+    "-m",
+    "demo.benign_server"
+  ],
+  "cwd": "."
+}
