@@ -33,6 +33,7 @@
       .mono-red { font: 600 14px/1.55 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #ff8f9f; }
       .mono-green { font: 600 14px/1.55 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #8cf0b2; }
       .mono-amber { font: 600 14px/1.55 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #ffd37c; }
+      .mono-small { font: 500 13px/1.5 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #dbe6f7; }
       .label { font: 700 13px/1 Inter, Segoe UI, Arial, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
       .small { font: 500 12px/1.4 Inter, Segoe UI, Arial, sans-serif; fill: #9cb0cf; }
     </style>
@@ -66,11 +67,11 @@
       <text x="1320" y="20" text-anchor="middle" class="strip-text">local execution</text>
     </g>
     <g transform="translate(650 50)">
-      <line x1="0" y1="-18" x2="0" y2="26" stroke="#ff8b8b" stroke-width="2.5" stroke-dasharray="6 6"/>
-      <rect x="-74" y="-18" width="148" height="26" rx="13" fill="#341b25" stroke="#ff7f91" stroke-width="1"/>
-      <text x="0" y="1" text-anchor="middle" class="label" fill="#ffb2be">trust boundary</text>
-      <text x="-246" y="1" text-anchor="end" class="small">untrusted config</text>
-      <text x="246" y="1" class="small">execution authority</text>
+      <line x1="0" y1="-22" x2="0" y2="24" stroke="#ff8b8b" stroke-width="2.5" stroke-dasharray="6 6"/>
+      <rect x="-82" y="-24" width="164" height="28" rx="14" fill="#341b25" stroke="#ff7f91" stroke-width="1"/>
+      <text x="0" y="-6" text-anchor="middle" class="label" fill="#ffb2be">trust boundary</text>
+      <text x="-98" y="-8" text-anchor="end" class="small">weakly trusted config</text>
+      <text x="98" y="-8" class="small">execution authority</text>
     </g>
   </g>
 
@@ -97,10 +98,11 @@
         <text x="78" y="200" class="mono">payload is harmless, but it still runs</text>
         <text x="0" y="246" class="mono-red">[artifact]</text>
         <text x="108" y="246" class="mono-red">wrote artifacts/pwned.txt</text>
-        <rect x="0" y="276" width="394" height="92" rx="16" fill="#20131a" stroke="#7f3145" stroke-width="1"/>
+        <rect x="0" y="276" width="394" height="118" rx="16" fill="#20131a" stroke="#7f3145" stroke-width="1"/>
         <text x="18" y="308" class="mono-red">result:</text>
-        <text x="96" y="308" class="mono">configuration was treated as execution authority</text>
-        <text x="18" y="342" class="mono">local effect is visible in the repository</text>
+        <text x="96" y="308" class="mono-small">configuration was treated as</text>
+        <text x="18" y="340" class="mono-small">execution authority from config</text>
+        <text x="18" y="372" class="mono-small">local effect is visible in the repository</text>
       </g>
     </g>
 
@@ -118,15 +120,17 @@
         <text x="0" y="48" class="mono">--config configs/malicious_demo.json</text>
         <text x="0" y="92" class="mono-dim">[policy]</text>
         <text x="94" y="92" class="mono-amber">policy violation:</text>
-        <text x="248" y="92" class="mono">inline execution via '-c' is not allowed</text>
-        <text x="0" y="128" class="mono-dim">[policy]</text>
-        <text x="94" y="128" class="mono">blocked before process launch</text>
-        <text x="0" y="182" class="mono-dim">[demo]</text>
-        <text x="78" y="182" class="mono">no local artifact was written</text>
-        <rect x="0" y="226" width="394" height="102" rx="16" fill="#1b2216" stroke="#4b6f36" stroke-width="1"/>
-        <text x="18" y="258" class="mono-green">effect:</text>
-        <text x="94" y="258" class="mono">same config, different outcome</text>
-        <text x="18" y="292" class="mono">policy gate keeps authority out of raw config</text>
+        <text x="94" y="120" class="mono-small">inline execution via '-c'</text>
+        <text x="94" y="150" class="mono-small">is not allowed</text>
+        <text x="0" y="194" class="mono-dim">[policy]</text>
+        <text x="94" y="194" class="mono">blocked before process launch</text>
+        <text x="0" y="240" class="mono-dim">[demo]</text>
+        <text x="78" y="240" class="mono">no local artifact was written</text>
+        <rect x="0" y="286" width="394" height="118" rx="16" fill="#1b2216" stroke="#4b6f36" stroke-width="1"/>
+        <text x="18" y="318" class="mono-green">effect:</text>
+        <text x="94" y="318" class="mono-small">same config, different outcome</text>
+        <text x="18" y="350" class="mono-small">policy gate keeps authority out of</text>
+        <text x="18" y="382" class="mono-small">raw config</text>
       </g>
     </g>
 
@@ -148,10 +152,11 @@
         <text x="78" y="128" class="mono">launching benign demo server</text>
         <text x="0" y="164" class="mono-dim">[demo]</text>
         <text x="78" y="164" class="mono">local execution is expected and allowed</text>
-        <rect x="0" y="214" width="394" height="102" rx="16" fill="#15231c" stroke="#356b52" stroke-width="1"/>
+        <rect x="0" y="214" width="394" height="118" rx="16" fill="#15231c" stroke="#356b52" stroke-width="1"/>
         <text x="18" y="246" class="mono-green">result:</text>
-        <text x="94" y="246" class="mono">known-good config passes the gate</text>
-        <text x="18" y="280" class="mono">policy distinguishes trusted launch from hostile launch</text>
+        <text x="94" y="246" class="mono-small">known-good config passes the gate</text>
+        <text x="18" y="278" class="mono-small">policy distinguishes trusted launch</text>
+        <text x="18" y="310" class="mono-small">from hostile launch</text>
       </g>
     </g>
   </g>
